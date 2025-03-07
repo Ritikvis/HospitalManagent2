@@ -7,10 +7,7 @@ import com.mapping4.mapping4.Service.BillService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class BillController {
@@ -22,5 +19,9 @@ public class BillController {
                                                       Long patientId){
         Bill bill1 = billService.Create(bill,id,patientId);
         return new ResponseEntity<>(bill1, HttpStatus.CREATED);
+    }
+    @GetMapping("billPaid/total-revenue")
+    public String BillPaid(){
+        return billService.BillPaid();
     }
 }

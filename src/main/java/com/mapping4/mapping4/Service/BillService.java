@@ -1,5 +1,6 @@
 package com.mapping4.mapping4.Service;
 
+import com.mapping4.mapping4.Enum.BillStatus;
 import com.mapping4.mapping4.Models.Appointment;
 import com.mapping4.mapping4.Models.Bill;
 import com.mapping4.mapping4.Models.Patient;
@@ -26,5 +27,15 @@ public class BillService {
         bill.setAppointment(appointment);
         bill.setPatient(patient);
         return billRepository.save(bill);
+    }
+
+    public String BillPaid() {
+        int total =0;
+        for(Bill bill:billRepository.findAll()){
+            if(bill.getBillStatus().equals(BillStatus.PAID)){
+                total += Integer.parseInt(bill.getTotalAmount());
+            }
+        }
+        return String.valueOf(total);
     }
 }

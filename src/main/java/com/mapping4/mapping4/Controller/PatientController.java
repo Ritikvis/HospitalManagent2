@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -16,9 +17,9 @@ public class PatientController {
     @Autowired
     private PatientService patientService;
     @PostMapping("CreatePatient")
-    public ResponseEntity<Patient> createDoctor(@RequestBody Patient patient){
+    public ResponseEntity<Patient> createDoctor(@RequestBody Patient patient, @RequestParam Long id){
 
-        Patient patient1 = patientService.Create(patient);
+        Patient patient1 = patientService.Create(patient,id);
         return new ResponseEntity<>(patient1, HttpStatus.CREATED);
     }
 }

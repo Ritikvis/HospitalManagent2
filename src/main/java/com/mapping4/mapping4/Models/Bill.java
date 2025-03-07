@@ -1,5 +1,6 @@
 package com.mapping4.mapping4.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mapping4.mapping4.Enum.BillStatus;
 import jakarta.persistence.*;
 
@@ -14,6 +15,7 @@ public class Bill {
 
     @OneToOne
     @JoinColumn(name = "appointment_id", unique = true)
+    @JsonIgnore
     private Appointment appointment;
 
     @ManyToOne
